@@ -359,11 +359,27 @@ class AccountPaymentOrder(models.Model):
         self.write({"state": "open"})
         return True
 
+    def _get_payment_info(self):
+        payment_line = ''
+        for rec in self.bank_line_ids:
+            pay = self.name
+            bank_account = rec.partner_bank_id.acc_number
+            partner = rec.partner_id.name
+            maturity_date = rec.date
+            currency = rec.currency_id.name
+            payment_reference = rec.name
+            payment_line = payment_line + (
+                '%s %s %s %s %s %s \n' % (
+                    pay, partner, bank_account, maturity_date, currency,
+                    payment_reference))
+        return payment_line
+
     def generate_payment_file(self):
         """Returns (payment file as string, filename)"""
         self.ensure_one()
         if self.payment_method_id.code == "manual":
-            return (False, False)
+            payment_info = self._get_payment_info()
+            return (payment_info.encode('ascii'), 'probando.txt')
         else:
             raise UserError(
                 _(
