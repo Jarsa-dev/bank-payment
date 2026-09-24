@@ -10,6 +10,7 @@
                         <field name="name" />
                         <field name="sequence" />
                         <field name="value_length" />
+                        <field name="strict_length" />
                         <field name="infill" />
                         <field name="characters_to_remove" />
                         <field name="alignment" />

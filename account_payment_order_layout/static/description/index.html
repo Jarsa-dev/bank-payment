@@ -405,6 +405,16 @@ payment orders that meet the specific requirements of different banks.</p>
 <li>Create or select a payment mode.</li>
 <li>Select the layout created in the previous step.</li>
 </ul>
+<p>Optional settings:</p>
+<ul class="simple">
+<li>In the layout, <em>Line Ending</em> sets the characters that separate the
+records of the file (LF or CRLF).</li>
+<li>In each line, <em>Strict Length</em> raises an error when the value is longer
+than its length instead of truncating it. Use it on accounts and
+amounts, where a truncated value is a wrong value.</li>
+<li>Non ASCII characters are transliterated per value (e.g. “Ñ” becomes
+“N”) before padding, so the fixed positions are kept.</li>
+</ul>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#toc-entry-2">Usage</a></h2>
